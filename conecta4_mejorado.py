@@ -5,7 +5,7 @@ class Turno:
     turno = "X"
 
 ventana = tk.Tk()
-tablero = [[" " for j in range(7)] for i in range(6)]
+tablero = [["   " for j in range(7)] for i in range(6)]
 t = Turno()
 
 def salir():
@@ -25,11 +25,11 @@ def actualizar():
 def colocarFichas(columna):
     col = columna
     fil = 5
-    if tablero[0][col] != " ":
+    if tablero[0][col] != "   ":
         print("Esta columna esta llena, intenta con otra: ")
     else:
         for m in range(0, len(tablero)):
-            if tablero[fil - m][col] == " ":
+            if tablero[fil - m][col] == "   ":
                 tablero[fil - m][col] = t.turno
                 contadorX = contador(tablero, t.turno, fil - m, col)
                 if contadorX >= 4:
