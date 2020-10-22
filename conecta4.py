@@ -20,21 +20,26 @@ def colocarFichas():
     try:
         col = int(col)
         col -= 1
-    except Exception as ex:
+    except ValueError as ex:
         print(f"{ex!r}", file=sys.stderr)
     fil = 5
     while True:
-        if col not in range(0, len(tablero) + 1):
-            col = int(input("Esta columna no es valida, intenta con otra: "))
-            col -= 1
-        elif tablero[0][col] != " ":
-            col = int(input("Esta columna esta llena, intenta con otra: "))
-            col -= 1
+        if col not in range(0, len(tablero) + 1) or tablero[0][col] != " ":
+            if col not in range(0, len(tablero) + 1):
+                col = input("Esta columna no es valida, intenta con otra: ")
+            elif tablero[0][col] != " ":
+                col = input("Esta columna esta llena, intenta con otra: ")
+            try:
+                col = int(col)
+                col -= 1
+            except ValueError as ex:
+                print(f"{ex!r}", file=sys.stderr)
+ 
         else:
             for m in range(0, len(tablero)):
                 if tablero[fil - m][col] == " ":
                     tablero[fil - m][col] = turno
-                    return fil - m, col
+                    return fil-m, col
 
 turno = "X"
 print("Parten las X")
